@@ -36,10 +36,14 @@ const LogoStyles = styled.div`
     transform: translateY(-0.7em);
   }
 
-  .slices {
+  .saucer {
+    --transformX: 0.1em;
+    --transformY: -0.15em;
     font-size: 3.2em;
-    letter-spacing: 0.2em;
-    transform: translateY(-0.15em);
+    letter-spacing: 0.28em;
+    transform: translateY(var(--transformX)) --transformY(var(--transformY));
+    overflow: hidden;
+    letter-spacing: 0.3em;
   }
   .slicks {
     transform: scale(1.4);
@@ -61,19 +65,19 @@ const LogoStyles = styled.div`
     display: inline-block;
     line-height: 1;
     transition: transform 0.3s;
-    &.S {
-      --translateX: -0.05;
+    &.B {
+      --translateX: 0.6em;
     }
-    &.l {
+    &.G {
       --rotate: 2deg;
       --scale: 1.4;
-      --translateX: 0.05em;
+      --translateX: 0.6em;
       --translateY: -0.05em;
     }
     &.i {
       --scale: 0.9;
       --translateY: -0.1em;
-      --translateX: 0.1em;
+      --translateX: 0.7em;
     }
     &.c {
       --rotate: 3deg;
@@ -104,15 +108,11 @@ export default function Logo() {
         <span className="est">EST 1994</span>
         <h1>
           <span className="slicks">
-            <span className="letter S">S</span>
-            <span className="letter l">l</span>
-            <span className="letter i">i</span>
-            <span className="letter c">c</span>
-            <span className="letter k">k</span>
-            <span className="letter apos">'</span>
-            <span className="letter s">s</span>
+            <span className="letter B">B</span>
+            <span className="letter i">I</span>
+            <span className="letter G">G</span>
           </span>
-          <span className="slices">slices</span>
+          <span className="saucer">Saucer</span>
         </h1>
       </div>
     </LogoStyles>
