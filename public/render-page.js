@@ -32097,6 +32097,17 @@ function v(){return(v=Object.assign||function(e){for(var t=1;t<arguments.length;
 
 /***/ }),
 
+/***/ "./src/assets/fonts/frenchfries.woff":
+/*!*******************************************!*\
+  !*** ./src/assets/fonts/frenchfries.woff ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/frenchfries-d8c7731101f5e88510ed6429afe9c575.woff";
+
+/***/ }),
+
 /***/ "./src/assets/images/bg.svg":
 /*!**********************************!*\
   !*** ./src/assets/images/bg.svg ***!
@@ -32155,6 +32166,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var normalize_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! normalize.css */ "./node_modules/normalize.css/normalize.css");
 /* harmony import */ var normalize_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(normalize_css__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _styles_GlobalStyles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles/GlobalStyles */ "./src/styles/GlobalStyles.js");
+/* harmony import */ var _styles_Typography__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/Typography */ "./src/styles/Typography.js");
+
 
 
 
@@ -32162,7 +32175,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Layout(_ref) {
   var children = _ref.children;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_GlobalStyles__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Nav__WEBPACK_IMPORTED_MODULE_1__["default"], null), children, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_GlobalStyles__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_Typography__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Nav__WEBPACK_IMPORTED_MODULE_1__["default"], null), children, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 }
 
 /***/ }),
@@ -32185,9 +32198,11 @@ __webpack_require__.r(__webpack_exports__);
 function Nav() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/"
-  }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/beers"
-  }, "Beers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "HOT NOW")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/pizzas"
+  }, "Pizza Menu")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/logo"
+  }, "Logo")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/slicemasters"
   }, "Slice Masters"))));
 }
@@ -32226,6 +32241,38 @@ function _templateObject() {
 
 var GlobalStyles = Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyle"])(_templateObject(), _assets_images_bg_svg__WEBPACK_IMPORTED_MODULE_2___default.a, _assets_images_stripes_svg__WEBPACK_IMPORTED_MODULE_3___default.a);
 /* harmony default export */ __webpack_exports__["default"] = (GlobalStyles);
+
+/***/ }),
+
+/***/ "./src/styles/Typography.js":
+/*!**********************************!*\
+  !*** ./src/styles/Typography.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/taggedTemplateLiteralLoose */ "./node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteralLoose.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _assets_fonts_frenchfries_woff__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/fonts/frenchfries.woff */ "./src/assets/fonts/frenchfries.woff");
+/* harmony import */ var _assets_fonts_frenchfries_woff__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_fonts_frenchfries_woff__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function _templateObject() {
+  var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  @font-face {\n    font-family: FrenchFries;\n    src: url(", ");\n  }\n  html {\n    font-family: FrenchFries, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    color: var(--black);\n  }\n  p, li {\n    letter-spacing: 0.5px;\n  }\n  h1,h2,h3,h4,h5,h6 {\n    font-weight: normal;\n    margin: 0;\n  }\n  a {\n    color: var(--black);\n    text-decoration-color: var(--red);\n    /* Chrome renders this weird with this font, so we turn it off */\n    text-decoration-skip-ink: none;\n  }\n  mark, .mark {\n    background: var(--yellow);\n    padding: 0 2px 2px 2px;\n    margin: 0;\n    display: inline;\n    line-height: 1;\n  }\n\n  .center {\n    text-align: center;\n  }\n\n  .tilt {\n    transform: rotate(-2deg);\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+
+
+var Typography = Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyle"])(_templateObject(), _assets_fonts_frenchfries_woff__WEBPACK_IMPORTED_MODULE_2___default.a);
+/* harmony default export */ __webpack_exports__["default"] = (Typography);
 
 /***/ }),
 
