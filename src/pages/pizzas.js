@@ -5,7 +5,7 @@ export default function PizzasPage({ data }) {
   const pizzas = data.pizzas.nodes;
   console.log(pizzas);
   // this is all prebuilt. happens during build time rather than render time.
-  // therefore we do not need any loaders. YAY!
+  // therefore we do not need any loaders. YAY!!!
   return (
     <>
       <p>Woah, There are {pizzas.length} pizzas!</p>
