@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import PizzaList from '../components/PizzaList/PizzaList';
 
 export default function PizzasPage({ data }) {
   const pizzas = data.pizzas.nodes;
@@ -8,7 +9,7 @@ export default function PizzasPage({ data }) {
   // therefore we do not need any loaders. YAY!!!
   return (
     <>
-      <p>Woah, There are {pizzas.length} pizzas!</p>
+      <PizzaList pizzas={pizzas} />
     </>
   );
 }
@@ -19,6 +20,7 @@ export const pageQuery = graphql`
   query PizzaQuery {
     pizzas: allSanityPizza {
       nodes {
+        id
         name
         price
         toppings {
