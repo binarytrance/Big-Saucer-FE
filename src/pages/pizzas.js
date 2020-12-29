@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import styled from 'styled-components';
 import PizzaList from '../components/PizzaList/PizzaList';
 
 export default function PizzasPage({ data }) {
@@ -33,6 +34,9 @@ export const pageQuery = graphql`
         }
         image {
           asset {
+            fixed(width: 200, height: 200) {
+              ...GatsbySanityImageFixed
+            }
             fluid(maxWidth: 400) {
               ...GatsbySanityImageFluid
             }
