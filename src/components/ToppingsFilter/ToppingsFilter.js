@@ -26,23 +26,13 @@ const ToppingStyle = styled.div`
 
 export default function ToppingsFilter({ pizzas }) {
   const getUniqueToppings = (pizzaList) => {
-    // console.clear();
-    // console.log(pizzaList);
-    // const flattened = pizzaList.map((pizza) => pizza.toppings).flat();
-    // console.log(flattened);
-
     const toppings = pizzaList
       .map((pizza) => pizza.toppings)
       .flat()
       .reduce((acc, topping) => {
         // check if this is an existing topping
-        // console.clear();
-        // console.log(acc, topping);
-
         const existingTopping = acc[topping.id];
-        // console.log(existingTopping);
         if (existingTopping) {
-          //   console.log(existingTopping.name);
           existingTopping.count += 1;
         } else {
           acc[topping.id] = {
@@ -57,13 +47,9 @@ export default function ToppingsFilter({ pizzas }) {
     const sortedToppings = Object.values(toppings).sort(
       (a, b) => b.count - a.count
     );
-    console.clear();
-    console.log(sortedToppings);
     return sortedToppings;
   };
   const toppingsArray = getUniqueToppings(pizzas);
-  console.clear();
-  console.log(toppingsArray);
   return (
     <>
       <ToppingStyle>

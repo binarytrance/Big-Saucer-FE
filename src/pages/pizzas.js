@@ -5,7 +5,6 @@ import ToppingsFilter from '../components/ToppingsFilter/ToppingsFilter';
 
 export default function PizzasPage({ data }) {
   const pizzas = data.pizzas.nodes;
-  // console.log(pizzas);
   // this is all prebuilt. happens during build time rather than render time.
   // therefore we do not need any loaders. YAY!!!
   return (
