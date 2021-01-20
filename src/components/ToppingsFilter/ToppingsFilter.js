@@ -1,4 +1,4 @@
-import { Link } from 'gatsby';
+import { Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -63,3 +63,13 @@ export default function ToppingsFilter({ pizzas }) {
     </>
   );
 }
+// we could instead make a static query to fetch all the pizzas/toppings instead of passing as prop
+// for that we have to use the useStaticQuery hook
+// for eg:
+// const {toppings} = useStaticQuery(graphql`
+// query {
+//   toppings : allSanityToppings {
+//     nodes ...
+//   }
+// }
+// `)
