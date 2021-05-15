@@ -33,7 +33,7 @@ const PizzaListItemStyles = styled.div`
 function PizzaListItem({ pizza }) {
   return (
     <PizzaListItemStyles>
-      <Link className="pizza-items__item" to={pizza.slug.current}>
+      <Link className="pizza-items__item" to={`/pizza/${pizza.slug.current}`}>
         <h2>
           <span className="mark">{pizza.name}</span>
         </h2>
