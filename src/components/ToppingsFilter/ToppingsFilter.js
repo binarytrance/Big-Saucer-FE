@@ -18,13 +18,18 @@ const ToppingStyle = styled.div`
       background: white;
       padding: 2px 5px;
     }
-    .active {
+    &.active {
+      background: var(--yellow);
+    }
+    &[aria-current='page'] {
       background: var(--yellow);
     }
   }
 `;
 
 export default function ToppingsFilter({ pizzas }) {
+  console.log(pizzas, 'inside toppings filter');
+
   const getUniqueToppings = (pizzaList) => {
     // blog
     const toppings = pizzaList
@@ -46,13 +51,13 @@ export default function ToppingsFilter({ pizzas }) {
         }
         return acc;
       }, {});
-    console.log(toppings);
+    // console.log(toppings);
 
     // sort based on count
     const sortedToppings = Object.values(toppings).sort(
       (a, b) => b.count - a.count
     );
-    console.log('sorted', sortedToppings);
+    // console.log('sorted', sortedToppings);
 
     return sortedToppings;
   };
@@ -60,6 +65,10 @@ export default function ToppingsFilter({ pizzas }) {
   return (
     <>
       <ToppingStyle>
+        <Link to="/pizzas">
+          <span className="name">All</span>
+          <span className="count">{toppingsArray.length}</span>
+        </Link>
         {toppingsArray.map((topping) => (
           <Link to={`/topping/${topping.name}`} key={topping.id}>
             <span className="name">{topping.name}</span>
