@@ -1,4 +1,4 @@
-import { Link, useStaticQuery } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -26,42 +26,73 @@ const ToppingStyle = styled.div`
     }
   }
 `;
+const getUniqueToppings = (pizzaList) => {
+  // blog
+  const toppings = pizzaList
+    .map((pizza) => pizza.toppings)
+    .flat()
+    .reduce((acc, topping) => {
+      // console.log(acc, topping);
 
-export default function ToppingsFilter({ pizzas }) {
-  console.log(pizzas, 'inside toppings filter');
+      // check if this is an existing topping
+      const existingTopping = acc[topping.id];
+      if (existingTopping) {
+        existingTopping.count += 1;
+      } else {
+        acc[topping.id] = {
+          id: topping.id,
+          name: topping.name,
+          count: 1,
+        };
+      }
+      return acc;
+    }, {});
+  // console.log(toppings);
 
-  const getUniqueToppings = (pizzaList) => {
-    // blog
-    const toppings = pizzaList
-      .map((pizza) => pizza.toppings)
-      .flat()
-      .reduce((acc, topping) => {
-        // console.log(acc, topping);
+  // sort based on count
+  const sortedToppings = Object.values(toppings).sort(
+    (a, b) => b.count - a.count
+  );
+  // console.log('sorted', sortedToppings);
 
-        // check if this is an existing topping
-        const existingTopping = acc[topping.id];
-        if (existingTopping) {
-          existingTopping.count += 1;
-        } else {
-          acc[topping.id] = {
-            id: topping.id,
-            name: topping.name,
-            count: 1,
-          };
+  return sortedToppings;
+};
+export default function ToppingsFilter() {
+  // we could instead make a static query to fetch all the pizzas/toppings instead of passing as prop
+  // for that we have to use the useStaticQuery hook
+  // for eg:
+  const { pizzas } = useStaticQuery(graphql`
+    query {
+      pizzas: allSanityPizza {
+        nodes {
+          id
+          name
+          price
+          toppings {
+            id
+            name
+            vegetarian
+          }
+          slug {
+            current
+          }
+          image {
+            asset {
+              fixed(width: 200, height: 200) {
+                ...GatsbySanityImageFixed
+              }
+              fluid(maxWidth: 400) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
         }
-        return acc;
-      }, {});
-    // console.log(toppings);
+      }
+    }
+  `);
+  console.log(pizzas.nodes, 'inside toppings filter');
 
-    // sort based on count
-    const sortedToppings = Object.values(toppings).sort(
-      (a, b) => b.count - a.count
-    );
-    // console.log('sorted', sortedToppings);
-
-    return sortedToppings;
-  };
-  const toppingsArray = getUniqueToppings(pizzas);
+  const toppingsArray = getUniqueToppings(pizzas.nodes);
   return (
     <>
       <ToppingStyle>
@@ -79,13 +110,3 @@ export default function ToppingsFilter({ pizzas }) {
     </>
   );
 }
-// we could instead make a static query to fetch all the pizzas/toppings instead of passing as prop
-// for that we have to use the useStaticQuery hook
-// for eg:
-// const {toppings} = useStaticQuery(graphql`
-// query {
-//   toppings : allSanityToppings {
-//     nodes ...
-//   }
-// }
-// `)
