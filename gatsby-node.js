@@ -24,6 +24,7 @@ async function turnPizzasIntoPages({ graphql, actions }) {
     actions.createPage({
       path: `pizza/${pizza.slug.current}`, // path for the new page
       component: pizzaTemplate,
+      // this is data that is passted to the template when we create the page
       context: {
         slug: pizza.slug.current,
       },
@@ -64,12 +65,12 @@ async function turnBeersIntoNodes({
   createNodeId,
   createContentDigest,
 }) {
-  console.log('beersfuck yea!');
+  // console.log('beersfuck yea!');
   // 1. fetch a list of beers
   const res = await fetch(`https://api.sampleapis.com/beers/ale`);
   // console.log(res.json());
   const beers = await res.json();
-  console.log(beers);
+  // console.log(beers);
 
   // 2. loop over each beers
   for (const beer of beers) {
@@ -91,6 +92,45 @@ async function turnBeersIntoNodes({
   }
 }
 
+async function turnSlicemastersIntoPages({ graphql, actions }) {
+  // 1. query all slicemasters
+  const { data } = await graphql(`
+    query {
+      sliceMasters: allSanityPerson {
+        totalCount
+        nodes {
+          name
+          id
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `);
+  // TODO: 2. turn each slicemaster into their page
+  // 3. figure out how many pages there are based on how many slicemasters there are, and how many per page
+  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
+  const pageCount = Math.ceil(data.sliceMasters.totalCount / pageSize);
+  console.log(
+    `there are ${data.sliceMasters.totalCount} people, ${pageCount} pages with ${pageSize} / page`
+  );
+
+  // 4. loop from 1 to n and create pages for them
+  for (let i = 0; i < pageCount; i++) {
+    console.log(`creating page ${i}`);
+    actions.createPage({
+      path: `/slicemasters/${i + 1}`,
+      component: path.resolve('./src/pages/slicemasters.js'),
+      context: {
+        skip: i * pageSize,
+        currentPage: i + 1,
+        pageSize,
+      },
+    });
+  }
+}
+
 export async function sourceNodes(params) {
   await Promise.all([turnBeersIntoNodes(params)]);
 }
@@ -107,6 +147,7 @@ export async function createPages(params) {
   await Promise.all([
     turnPizzasIntoPages(params),
     turnToppingsIntoPages(params),
+    turnSlicemastersIntoPages(params),
   ]);
   //   3. Slicemasters
 }

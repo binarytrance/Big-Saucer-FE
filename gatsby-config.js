@@ -22,4 +22,7 @@ export default {
       },
     },
   ],
+  flags: {
+    PRESERVE_WEBPACK_CACHE: true,
+  },
 };
