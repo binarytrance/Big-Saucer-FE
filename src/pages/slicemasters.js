@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
-// import Pagination from '../components/Pagination';
+import Pagination from '../components/Pagination';
 // import SEO from '../components/SEO';
 
 const SlicemasterGrid = styled.div`
@@ -44,7 +44,13 @@ export default function SlicemastersPage({ data, pageContext }) {
   const slicemasters = data.slicemasters.nodes;
   return (
     <>
-      {process.env.GATSBY_PAGE_SIZE}
+      {/* {process.env.GATSBY_PAGE_SIZE} */}
+      <Pagination
+        pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+        currentPage={pageContext.currentPage || 1}
+        source="slicemasters"
+        totalItemsCount={data.slicemasters.totalCount}
+      />
       <SlicemasterGrid>
         {slicemasters.map((person) => (
           <SlicemasterStyles key={person.id}>
