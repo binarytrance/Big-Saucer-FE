@@ -8,6 +8,7 @@ export default {
     title: 'The Big Saucer',
     siteUrl: 'https://gatsby.pizza',
     description: 'The best pizza place',
+    twitter: '@GaneshDash_005',
   },
   plugins: [
     'gatsby-plugin-styled-components', // we can directly import and use this inside our compnents, but for servering rendering/prebuilding which would improve SEO, we need to add them as plugins here
