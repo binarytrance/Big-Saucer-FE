@@ -24,5 +24,6 @@ export default {
   ],
   flags: {
     PRESERVE_WEBPACK_CACHE: true,
+    FAST_REFRESH: true,
   },
 };
