@@ -10,7 +10,8 @@ export default {
     description: 'The best pizza place',
   },
   plugins: [
-    'gatsby-plugin-styled-components',
+    'gatsby-plugin-styled-components', // we can directly import and use this inside our compnents, but for servering rendering/prebuilding which would improve SEO, we need to add them as plugins here
+    'gatsby-plugin-react-helmet',
     {
       // this is the name of the plugin you are adding
       resolve: 'gatsby-source-sanity',
