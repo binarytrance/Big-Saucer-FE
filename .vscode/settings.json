@@ -34,5 +34,8 @@
     "xml",
     "svg",
     "javascript"
-  ]
+  ],
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
 }
