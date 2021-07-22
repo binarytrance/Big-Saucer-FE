@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PizzaList from '../components/PizzaList/PizzaList';
 import ToppingsFilter from '../components/ToppingsFilter/ToppingsFilter';
+import SEO from '../components/SEO';
 
 export default function PizzasPage({ data, pageContext }) {
   const pizzas = data.pizzas.nodes;
@@ -11,6 +12,13 @@ export default function PizzasPage({ data, pageContext }) {
   // therefore we do not need any loaders. YAY!!!
   return (
     <>
+      <SEO
+        title={
+          pageContext.topping
+            ? `Pizzas with ${pageContext.topping}`
+            : 'All Pizzas'
+        }
+      />
       <ToppingsFilter pizzas={pizzas} activeTopping={pageContext.topping} />
       <PizzaList pizzas={pizzas} />
     </>
