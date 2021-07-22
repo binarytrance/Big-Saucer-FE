@@ -7,7 +7,7 @@ export default {
   siteMetadata: {
     title: 'The Big Saucer',
     siteUrl: 'https://gatsby.pizza',
-    description: 'The best pizza place',
+    description: 'The best pizza place in the whole world!',
     twitter: '@GaneshDash_005',
   },
   plugins: [
