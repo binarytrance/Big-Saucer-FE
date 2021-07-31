@@ -7,6 +7,8 @@ import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
 import MenuItemStyles from '../styles/MenuItemStyles';
 import OrderStyles from '../styles/OrderStyles';
+import usePizza from '../customHooks/usePizza';
+import PizzaOrder from '../components/PizzaOrder';
 
 export default function OrderPage({ data }) {
   const pizzas = data.pizzas.nodes;
@@ -14,6 +16,11 @@ export default function OrderPage({ data }) {
     name: '',
     email: '',
     mapleSyrup: '',
+  });
+
+  const [order, addPizzaToOrder, removePizzaFromOrder] = usePizza({
+    pizzas,
+    inputs: values,
   });
   return (
     <>
@@ -68,12 +75,12 @@ export default function OrderPage({ data }) {
                   <button
                     type="button"
                     key={size}
-                    // onClick={() =>
-                    //   addToOrder({
-                    //     id: pizza.id,
-                    //     size,
-                    //   })
-                    // }
+                    onClick={() =>
+                      addPizzaToOrder({
+                        id: pizza.id,
+                        size,
+                      })
+                    }
                   >
                     {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
                   </button>
@@ -84,11 +91,11 @@ export default function OrderPage({ data }) {
         </fieldset>
         <fieldset className="order">
           <legend>Order</legend>
-          {/* <PizzaOrder
+          <PizzaOrder
             order={order}
-            removeFromOrder={removeFromOrder}
+            removeFromOrder={removePizzaFromOrder}
             pizzas={pizzas}
-          /> */}
+          />
         </fieldset>
         {/* <fieldset disabled={loading}>
           <h3>
