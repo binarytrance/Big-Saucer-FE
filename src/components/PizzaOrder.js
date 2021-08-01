@@ -6,13 +6,12 @@ import formatMoney from '../utils/formatMoney';
 
 const PizzaOrder = ({ order, removeFromOrder, pizzas }) =>
   order.map((pizzaFromOrder, index) => {
-    const orderedPizzaDetails = pizzas.find((pizzeria) => {
-      console.log(pizzeria, order);
-      return pizzeria.id === pizzaFromOrder.id;
-    });
+    const orderedPizzaDetails = pizzas.find(
+      (pizzeria) => pizzeria.id === pizzaFromOrder.id
+    );
     // console.log(pizza, orderedPizzaDetails, pizzas);
     return (
-      <MenuItemStyles key={pizzaFromOrder.id}>
+      <MenuItemStyles key={pizzaFromOrder.id + index}>
         <Img
           width="50"
           height="50"

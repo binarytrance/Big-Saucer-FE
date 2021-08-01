@@ -9,6 +9,7 @@ import MenuItemStyles from '../styles/MenuItemStyles';
 import OrderStyles from '../styles/OrderStyles';
 import usePizza from '../customHooks/usePizza';
 import PizzaOrder from '../components/PizzaOrder';
+import calculateOrderTotal from '../utils/calculateOrderTotal';
 
 export default function OrderPage({ data }) {
   const pizzas = data.pizzas.nodes;
@@ -71,20 +72,24 @@ export default function OrderPage({ data }) {
                 <h2>{pizza.name}</h2>
               </div>
               <div>
-                {['S', 'M', 'L'].map((size) => (
-                  <button
-                    type="button"
-                    key={size}
-                    onClick={() =>
-                      addPizzaToOrder({
-                        id: pizza.id,
-                        size,
-                      })
-                    }
-                  >
-                    {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
-                  </button>
-                ))}
+                {['S', 'M', 'L'].map((size) => {
+                  const pizzaPrice = calculatePizzaPrice(pizza.price, size);
+                  return (
+                    <button
+                      type="button"
+                      key={size}
+                      onClick={() =>
+                        addPizzaToOrder({
+                          id: pizza.id,
+                          size,
+                          priceInCents: pizzaPrice,
+                        })
+                      }
+                    >
+                      {size} {formatMoney(pizzaPrice)}
+                    </button>
+                  );
+                })}
               </div>
             </MenuItemStyles>
           ))}
@@ -97,11 +102,9 @@ export default function OrderPage({ data }) {
             pizzas={pizzas}
           />
         </fieldset>
-        {/* <fieldset disabled={loading}>
-          <h3>
-            Your Total is {formatMoney(calculateOrderTotal(order, pizzas))}
-          </h3>
-          <div aria-live="polite" aria-atomic="true">
+        <fieldset>
+          <h3>Your Total is {formatMoney(calculateOrderTotal(order))}</h3>
+          {/* <div aria-live="polite" aria-atomic="true">
             {error ? <p>Error: {error}</p> : ''}
           </div>
           <button type="submit" disabled={loading}>
@@ -109,8 +112,8 @@ export default function OrderPage({ data }) {
               {loading ? 'Placing Order...' : ''}
             </span>
             {loading ? '' : 'Order Ahead'}
-          </button>
-        </fieldset> */}
+          </button> */}
+        </fieldset>
       </OrderStyles>
     </>
   );
