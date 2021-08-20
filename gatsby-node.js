@@ -74,7 +74,7 @@ async function turnSliceMastersIntoPages({ graphql, actions }) {
       }
     }
   `);
-  console.log(data.sliceMasters.nodes);
+  // console.log(data.sliceMasters.nodes);
   data.sliceMasters.nodes.forEach((sliceMaster) => {
     actions.createPage({
       path: `slicemaster/${sliceMaster.slug.current}`,
@@ -139,13 +139,9 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
   // 3. figure out how many pages there are based on how many slicemasters there are, and how many per page
   const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
   const pageCount = Math.ceil(data.sliceMasters.totalCount / pageSize);
-  console.log(
-    `there are ${data.sliceMasters.totalCount} people, ${pageCount} pages with ${pageSize} / page`
-  );
 
   // 4. loop from 1 to n and create pages for them
   for (let i = 0; i < pageCount; i++) {
-    console.log(`creating page ${i}`);
     actions.createPage({
       path: `/slicemasters/${i + 1}`,
       component: path.resolve('./src/pages/slicemasters.js'),

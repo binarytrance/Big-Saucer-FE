@@ -19,14 +19,25 @@ export default function OrderPage({ data }) {
     mapleSyrup: '',
   });
 
-  const [order, addPizzaToOrder, removePizzaFromOrder] = usePizza({
+  const [
+    order,
+    addPizzaToOrder,
+    removePizzaFromOrder,
+    error,
+    loading,
+    message,
+    submitOrder,
+  ] = usePizza({
     pizzas,
-    inputs: values,
+    values,
   });
+  if (message) {
+    return <p>{message}</p>;
+  }
   return (
     <>
       <SEO title="Order a Pizza!" />
-      <OrderStyles>
+      <OrderStyles onSubmit={submitOrder}>
         <fieldset>
           <legend>Your Info</legend>
           <label htmlFor="name">
@@ -104,7 +115,7 @@ export default function OrderPage({ data }) {
         </fieldset>
         <fieldset>
           <h3>Your Total is {formatMoney(calculateOrderTotal(order))}</h3>
-          {/* <div aria-live="polite" aria-atomic="true">
+          <div aria-live="polite" aria-atomic="true">
             {error ? <p>Error: {error}</p> : ''}
           </div>
           <button type="submit" disabled={loading}>
@@ -112,7 +123,7 @@ export default function OrderPage({ data }) {
               {loading ? 'Placing Order...' : ''}
             </span>
             {loading ? '' : 'Order Ahead'}
-          </button> */}
+          </button>
         </fieldset>
       </OrderStyles>
     </>
