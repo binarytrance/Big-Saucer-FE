@@ -39,7 +39,7 @@ export default function usePizza({ pizzas, values }) {
     const body = {
       order: attachNamesAndPrices(order, pizzas),
       total: formatMoney(calculateOrderTotal(order)),
-      values: values.name,
+      name: values.name,
       email: values.email,
     };
     console.log(body);
