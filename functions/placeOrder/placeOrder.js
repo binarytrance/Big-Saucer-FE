@@ -1,5 +1,11 @@
 const nodemailer = require('nodemailer');
 
+function wait(ms = 0) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 function generateOrderEmail({ order, total }) {
   return `<div>
     <h2>Your Recent Order for ${total}</h2>
@@ -35,8 +41,16 @@ const transporter = nodemailer.createTransport({
 
 // commonjs not ES modules, therefore not export default
 exports.handler = async (event, context) => {
+  // await wait(5000);
   const parsedBody = JSON.parse(event.body);
-  console.log(parsedBody);
+
+  // Check if they have filled out the honeypot
+  if (parsedBody.mapleSyrup) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: 'Boop beep bop zzzzstt good bye' }),
+    };
+  }
 
   // validate the data coming in
   const required = ['name', 'email', 'order'];
@@ -51,6 +65,15 @@ exports.handler = async (event, context) => {
         }),
       };
     }
+  }
+  // send error if empty order
+  if (!parsedBody.order.length) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: `Your cart feels lonely!`,
+      }),
+    };
   }
   // send the email
 

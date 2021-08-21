@@ -8,7 +8,6 @@ const useForm = (initialValues) => {
     if (e.target.type === 'number') {
       value = parseInt(value);
     }
-    console.log(e.target.name, values);
 
     setValues({
       ...values,

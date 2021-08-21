@@ -12,7 +12,7 @@ export default function usePizza({ pizzas, values }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  console.log(order);
+  // console.log(order);
 
   // 2. make a function to add things to our order
   const addPizzaToOrder = (orderedPizza) => {
@@ -30,7 +30,7 @@ export default function usePizza({ pizzas, values }) {
 
   // fun that runs when form is order form is submitted
   const submitOrder = async (e) => {
-    console.log(e);
+    // console.log(e);
     e.preventDefault();
     setLoading(true);
     setError(null);
@@ -42,7 +42,7 @@ export default function usePizza({ pizzas, values }) {
       name: values.name,
       email: values.email,
     };
-    console.log(body);
+    // console.log(body);
     // 4. send this data to a serverless func when we checkout
     const response = await fetch(
       `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
@@ -55,10 +55,12 @@ export default function usePizza({ pizzas, values }) {
       }
     );
     const text = JSON.parse(await response.text());
+    console.log(response.status, text);
 
     if (response.status >= 400 && response.status < 600) {
       setLoading(false);
-      setError(text.error);
+      setError(text.message);
+      console.log(text.message);
     } else {
       setLoading(false);
       setMessage('Your desired Big Saucers are ready for you to munch on!');
