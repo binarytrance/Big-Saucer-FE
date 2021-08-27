@@ -36,7 +36,6 @@ function HotSlices({ hotSlices }) {
 
 export default function Homepage() {
   const [hotSlices, sliceMasters] = useLatestData();
-  console.log(hotSlices, sliceMasters);
 
   return (
     <>

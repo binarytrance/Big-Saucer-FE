@@ -32,8 +32,6 @@ const getUniqueToppings = (pizzaList) => {
     .map((pizza) => pizza.toppings)
     .flat()
     .reduce((acc, topping) => {
-      // console.log(acc, topping);
-
       // check if this is an existing topping
       const existingTopping = acc[topping.id];
       if (existingTopping) {
@@ -47,13 +45,11 @@ const getUniqueToppings = (pizzaList) => {
       }
       return acc;
     }, {});
-  // console.log(toppings);
 
   // sort based on count
   const sortedToppings = Object.values(toppings).sort(
     (a, b) => b.count - a.count
   );
-  // console.log('sorted', sortedToppings);
 
   return sortedToppings;
 };
@@ -90,7 +86,6 @@ export default function ToppingsFilter() {
       }
     }
   `);
-  console.log(pizzas.nodes, 'inside toppings filter');
 
   const toppingsArray = getUniqueToppings(pizzas.nodes);
   return (

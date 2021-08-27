@@ -16,11 +16,9 @@ async function turnPizzasIntoPages({ graphql, actions }) {
       }
     }
   `);
-  // console.log(data);
 
   // loop over each pizza and create a page for that pizza
   data.pizzas.nodes.forEach((pizza) => {
-    // console.log('creating page for', pizza.slug.current);
     actions.createPage({
       path: `pizza/${pizza.slug.current}`, // path for the new page
       component: pizzaTemplate,
@@ -46,9 +44,8 @@ async function turnToppingsIntoPages({ graphql, actions }) {
       }
     }
   `);
-  // console.log(data.toppings.nodes);
+
   data.toppings.nodes.forEach((topping) => {
-    // console.log(topping.name);
     actions.createPage({
       path: `topping/${topping.name}`,
       component: toppingsTemplate,
@@ -74,7 +71,7 @@ async function turnSliceMastersIntoPages({ graphql, actions }) {
       }
     }
   `);
-  // console.log(data.sliceMasters.nodes);
+
   data.sliceMasters.nodes.forEach((sliceMaster) => {
     actions.createPage({
       path: `slicemaster/${sliceMaster.slug.current}`,
@@ -92,12 +89,10 @@ async function turnBeersIntoNodes({
   createNodeId,
   createContentDigest,
 }) {
-  // console.log('beersfuck yea!');
   // 1. fetch a list of beers
   const res = await fetch(`https://api.sampleapis.com/beers/ale`);
-  // console.log(res.json());
+
   const beers = await res.json();
-  // console.log(beers);
 
   // 2. loop over each beers
   for (const beer of beers) {
@@ -159,7 +154,6 @@ export async function sourceNodes(params) {
 }
 
 export async function createPages(params) {
-  // console.log('asdf');
   // create pages dynamically
   //   1. Pizzas
   // 2. Toppings

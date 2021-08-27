@@ -40,8 +40,6 @@ const SlicemasterStyles = styled.div`
 `;
 
 export default function SlicemastersPage({ data, pageContext }) {
-  console.log(pageContext);
-
   const slicemasters = data.slicemasters.nodes;
   return (
     <>

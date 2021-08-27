@@ -34,13 +34,11 @@ const PaginationStyles = styled.div`
 `;
 
 const Pagination = ({ pageSize, currentPage, source, totalItemsCount }) => {
-  console.log(pageSize, currentPage);
   const totalPages = Math.ceil(totalItemsCount / pageSize);
   const prevPage = currentPage - 1;
   const nextPage = currentPage + 1;
   const hasPrevPage = prevPage > 0;
   const hasNextPage = nextPage <= totalPages;
-  console.log(Array.from({ length: totalPages }), totalItemsCount, pageSize);
 
   return (
     <PaginationStyles>

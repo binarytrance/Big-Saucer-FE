@@ -9,7 +9,6 @@ const PizzaOrder = ({ order, removeFromOrder, pizzas }) =>
     const orderedPizzaDetails = pizzas.find(
       (pizzeria) => pizzeria.id === pizzaFromOrder.id
     );
-    // console.log(pizza, orderedPizzaDetails, pizzas);
     return (
       <MenuItemStyles key={pizzaFromOrder.id + index}>
         <Img

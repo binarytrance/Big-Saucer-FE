@@ -6,7 +6,6 @@ import SEO from '../components/SEO';
 
 export default function PizzasPage({ data, pageContext }) {
   const pizzas = data.pizzas.nodes;
-  console.log(pizzas, 'total pizzas');
 
   // this is all prebuilt. happens during build time rather than render time.
   // therefore we do not need any loaders. YAY!!!

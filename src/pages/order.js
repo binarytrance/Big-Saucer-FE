@@ -31,7 +31,6 @@ export default function OrderPage({ data }) {
     pizzas,
     values,
   });
-  console.log(error, message);
 
   if (message) {
     return <p>{message}</p>;

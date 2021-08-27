@@ -12,7 +12,6 @@ export const PizzaGrid = styled.div`
 `;
 
 export default function SinglePizzaPage({ data: { pizza } }) {
-  console.log('single pizza!!!', pizza);
   // const {pizza}
   return (
     <>
