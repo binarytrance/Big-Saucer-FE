@@ -37,7 +37,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "esm": "^3.2.25"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.10.4",
@@ -53,7 +54,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.2",
-    "esm": "^3.2.25",
+
     "prettier": "^2.1.1"
   },
   "repository": {
