@@ -84,35 +84,35 @@ async function turnSliceMastersIntoPages({ graphql, actions }) {
   });
 }
 
-async function turnBeersIntoNodes({
-  actions,
-  createNodeId,
-  createContentDigest,
-}) {
-  // 1. fetch a list of beers
-  const res = await fetch(`https://api.sampleapis.com/beers/ale`);
+// async function turnBeersIntoNodes({
+//   actions,
+//   createNodeId,
+//   createContentDigest,
+// }) {
+//   // 1. fetch a list of beers
+//   const res = await fetch(`https://api.sampleapis.com/beers/ale`);
 
-  const beers = await res.json();
+//   const beers = await res.json();
 
-  // 2. loop over each beers
-  for (const beer of beers) {
-    // 3. create a node for that beer
-    const nodeMeta = {
-      id: createNodeId(`beer-${beer.name}`),
-      parent: null,
-      children: [],
-      internal: {
-        type: 'Beer',
-        mediaType: 'application/json',
-        contentDigest: createContentDigest(beer),
-      },
-    };
-    actions.createNode({
-      ...beer,
-      ...nodeMeta,
-    });
-  }
-}
+//   // 2. loop over each beers
+//   for (const beer of beers) {
+//     // 3. create a node for that beer
+//     const nodeMeta = {
+//       id: createNodeId(`beer-${beer.name}`),
+//       parent: null,
+//       children: [],
+//       internal: {
+//         type: 'Beer',
+//         mediaType: 'application/json',
+//         contentDigest: createContentDigest(beer),
+//       },
+//     };
+//     actions.createNode({
+//       ...beer,
+//       ...nodeMeta,
+//     });
+//   }
+// }
 
 async function turnSlicemastersIntoPages({ graphql, actions }) {
   // 1. query all slicemasters
@@ -149,9 +149,9 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
   }
 }
 
-export async function sourceNodes(params) {
-  await Promise.all([turnBeersIntoNodes(params)]);
-}
+// export async function sourceNodes(params) {
+//   await Promise.all([turnBeersIntoNodes(params)]);
+// }
 
 export async function createPages(params) {
   // create pages dynamically
