@@ -40,56 +40,58 @@ const transporter = nodemailer.createTransport({
 });
 
 // commonjs not ES modules, therefore not export default
-exports.handler = async (event, context) => {
+module.exports = async (req, res) => {
+  // exports.handler is a lambda function signature
+  // module.exports is ES6
   // await wait(5000);
-  const parsedBody = JSON.parse(event.body);
+  // const body = JSON.parse(event.body);
+  const { body } = res;
 
   // Check if they have filled out the honeypot
-  if (parsedBody.mapleSyrup) {
-    return {
+  if (body.mapleSyrup) {
+    // return {
+    //   statusCode: 400,
+    //   body: JSON.stringify({ message: 'Boop beep bop zzzzstt good bye' }),
+    // };
+    return res.status(400).json({
       statusCode: 400,
-      body: JSON.stringify({ message: 'Boop beep bop zzzzstt good bye' }),
-    };
+      body: JSON.stringify({
+        message: 'Boop beep bop zzzzstt good bye',
+      }),
+    });
   }
 
   // validate the data coming in
   const required = ['name', 'email', 'order'];
 
   for (const field of required) {
-    if (!parsedBody[field]) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({
-          message: `Oops! You are missing the required ${field} field`,
-        }),
-      };
+    if (!body[field]) {
+      return res.status(400).json({
+        message: `Oops! You are missing the required ${field} field`,
+      });
     }
   }
   // send error if empty order
-  if (!parsedBody.order.length) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
-        message: `Your cart feels lonely!`,
-      }),
-    };
+  if (!body.order.length) {
+    return res.status(400).json({
+      message: `Your cart feels lonely!`,
+    });
   }
   // send the email
 
   const info = await transporter.sendMail({
     from: 'Big Saucers <bigsaucer@example.com>',
-    to: `${parsedBody.name} <${parsedBody.email}>, orders@example.com`,
+    to: `${body.name} <${body.email}>, orders@example.com`,
     subject: 'New Order!',
     html: generateOrderEmail({
-      order: parsedBody.order,
-      total: parsedBody.total,
+      order: body.order,
+      total: body.total,
     }),
   });
   // send success or error message
 
   // send a test email
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: 'Success!' }),
-  };
+  return res.status(200).json({
+    message: 'Success!',
+  });
 };
